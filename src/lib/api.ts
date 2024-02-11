@@ -52,3 +52,11 @@ export const newProject = async (name) => {
     body: { name },
   });
 }
+
+export const finishProject = async (project) => {
+  return fetcher({
+    url: "/api/reset",
+    method: "POST",
+    body: project,
+  });
+}

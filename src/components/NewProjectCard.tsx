@@ -32,6 +32,7 @@ export default function NewProjectCard () {
         <h1 className="text-3xl mb-6">New Project</h1>
         <form className="flex items-center" onSubmit={handleSubmit}>
           <Input
+            required
             placeholder="project name"
             value={name}
             onChange={(e) => setName(e.target.value)}

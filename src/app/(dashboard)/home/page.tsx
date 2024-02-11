@@ -34,13 +34,13 @@ export default async function Home() {
 			</Suspense>
 		</div>
         <div className="flex flex-2 grow items-center flex-wrap mt-3">
-			{projects.map((project) => (
+			{projects.map((project) => (project.deleted === false && (
 			<div className="w-1/3 p-3 ">
 				<Link href = {`/project/${project.id}`}>
 					<ProjectComponent project={project}/>
 				</Link>
 			</div>
-			))}
+			)))}
           <div className="w-1/3 p-3">
 			<NewProjectCard/>
 		  </div>

@@ -2,13 +2,16 @@
 import Card from "./Card";
 import Button from "./Button";
 import { finishProject } from "../lib/api";
+import { useRouter } from "next/router";
 
 export default function DeleteProject({projectId}) {
 
     //const a = {name: projectId, user: user}
     const handleSubmit = async () => {
-        console.log('clicked')
+        //console.log('clicked')
+        //const router = useRouter();
         await finishProject(projectId);
+        //router.push('/app/home');
       };
 
     console.log(`project name: ${projectId}`)

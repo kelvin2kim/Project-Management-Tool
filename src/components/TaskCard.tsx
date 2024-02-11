@@ -14,7 +14,7 @@ const getData = async () => {
             ownerId: user.id,
             NOT: {
                 status: TASK_STATUS.COMPLETED,
-                deleted: true,
+                deleted: false,
             }
         },
         take: 5,

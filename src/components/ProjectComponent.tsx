@@ -33,7 +33,7 @@ const ProjectComponent: FC<{project: ProjectWithTasks}> = ({ project }) => {
     const allTasks = project.tasks.length;
     const progress = Math.ceil((completed / allTasks) * 100);
 
-    console.log(`completed: ${completed}, allTasks: ${allTasks}, progress: ${progress}`)
+    //console.log(`completed: ${completed}, allTasks: ${allTasks}, progress: ${progress}`)
 
     return (
         <Card className="!px-6 !py-8 hover:scale-105 transition-all ease-in-out duration-200">

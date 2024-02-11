@@ -6,6 +6,9 @@ import { Suspense } from "react";
 import Greetings from "../../../components/Greetings";
 import PlaceholderGreetings from "../../../components/PlaceholderGreetings";
 import ProjectComponent from "../../../components/ProjectComponent";
+import TaskCard from "../../../components/TaskCard";
+import NewProject from "../../../components/NewProjectCard";
+import NewProjectCard from "../../../components/NewProjectCard";
 
 async function getProject() {
 	const user = await getUserFromCookie(cookies());
@@ -38,10 +41,14 @@ export default async function Home() {
 				</Link>
 			</div>
 			))}
-          <div className="w-1/3 p-3">{/* new project here */}</div>
+          <div className="w-1/3 p-3">
+			<NewProjectCard/>
+		  </div>
         </div>
         <div className="mt-6 flex-2 grow w-full flex">
-          <div className="w-full">{/* tasks here */}</div>
+          <div className="w-full px-3">
+			<TaskCard title="Tasks:"/>
+		  </div>
         </div>
       </div>
     </div>

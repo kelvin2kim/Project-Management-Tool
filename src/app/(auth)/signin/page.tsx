@@ -1,6 +1,11 @@
 import Authform from "../../../components/Authform"
 
-export default function Signin() {
+const delay = (time) => new Promise((resolve) => {
+    setTimeout(() => resolve(1), time)
+})
+
+export default async function Signin() {
+	await delay(100)
 	return <div>
 		<Authform mode = "signin"/>
 	</div>

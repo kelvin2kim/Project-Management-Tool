@@ -13,6 +13,7 @@ export default function DashboardRtLayour({children}) {
 					<Sidebar/>
 					{children}
 				</GlassPane>
+				<div id="modal"></div>
 			</body>
 		</html>
 		);

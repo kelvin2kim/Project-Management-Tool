@@ -29,7 +29,7 @@ export async function validateJWT(jwt) {
 		new TextEncoder().encode(process.env.JWT_SECRET)
 		)
 
-  console.log('hello')
+  //console.log('hello')
 	return payload.payload as any;
 }
 

@@ -14,7 +14,7 @@ const getData = async () => {
             ownerId: user.id,
             NOT: {
                 status: TASK_STATUS.COMPLETED,
-                deleted: false,
+                deleted: true,
             }
         },
         take: 5,
@@ -58,7 +58,9 @@ export default async function TaskCard({tasks, title}) {
                     ))}
                 </div>
                 ) : (
-                <div>no tasks</div>
+                    <h4 className="text-xl text-gray-400">
+                        <div>No Tasks</div>
+                    </h4>
                 )}
             </div>
         </Card>

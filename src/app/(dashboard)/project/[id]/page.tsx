@@ -25,7 +25,7 @@ export default async function ProjectPage({params}) {
     return (
         <div className="h-full w-full overflow-y-auto pr-6 px-3 mt-10">
             <DeleteProject projectId={project.name}/>
-          <TaskCard tasks={project.tasks} title={project.name} />
+          <TaskCard tasks={project.tasks} title={project.name} params={params.id}/>
         </div>
       );
 }

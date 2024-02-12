@@ -4,6 +4,7 @@ import { cookies } from "next/headers";
 import Button from "./Button";
 import Card from "./Card";
 import { TASK_STATUS } from "@prisma/client";
+import CreateTaskButton from "./CreateTaskButton";
 
 
 const getData = async () => {
@@ -25,8 +26,29 @@ const getData = async () => {
 
     return fiveTasks;
 }
+//if the value of id is undefined, then for prisma is query essentially becomes "where: {ownerId: user.id}"; it ignores the id field
+//but hey, it works for my use case
+//Remember that the create new task button the home page just puts the task in, and you're not specifing what project the task belongs to
+//If you want to put a task into a specific project, you have to go to the project page and create the task there
+//If u just make a new task in the home page it will just put the task into the first project in the database list
+const getData2 = async (id) => {
+    const user = await getUserFromCookie(cookies());
+    
+    const project = await db.project.findFirst({
+        where: {
+            id: id,
+            ownerId: user.id,
+        },
+        include: {
+            tasks: true,
+        }
+    })
+    return project;
+  }
 
-export default async function TaskCard({tasks, title}) {
+export default async function TaskCard({tasks, title, params}) {
+    const project = await getData2(params);
+    console.log(`params: ${params}`)
     const data = tasks || await getData();
 
     return (
@@ -36,9 +58,7 @@ export default async function TaskCard({tasks, title}) {
                 <span className="text-3xl text-gray-600">{title}</span>
                 </div>
                 <div>
-                <Button intent="text" className="text-violet-600">
-                    + Create New
-                </Button>
+                <CreateTaskButton projectId={project.id}/>
                 </div>
             </div>
             <div>

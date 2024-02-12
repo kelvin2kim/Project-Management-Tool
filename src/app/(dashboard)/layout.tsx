@@ -14,6 +14,7 @@ export default function DashboardRtLayour({children}) {
 					{children}
 				</GlassPane>
 				<div id="modal"></div>
+				<div id="modal2"></div>
 			</body>
 		</html>
 		);

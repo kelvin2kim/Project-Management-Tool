@@ -60,3 +60,11 @@ export const finishProject = async (project) => {
     body: project,
   });
 }
+
+export const newTask = async (input) => {
+  return fetcher({
+    url: "/api/task",
+    method: "POST",
+    body: input,
+  });
+}

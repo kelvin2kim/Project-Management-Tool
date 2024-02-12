@@ -8,8 +8,8 @@ export default async function deleter(req, res) {
     //console.log(`jwt = ${req.cookies[process.env.COOKIE_NAME]}`);
     //const user = getUserFromCookie(cookies()) -> this doesn't work. Why?
 
-    console.log(`ownerid: ${user.id}`)
-    console.log(`name of project: ${req.body}`)
+    //console.log(`ownerid: ${user.id}`)
+    //console.log(`name of project: ${req.body}`)
   
     await db.project.update({
         where: {

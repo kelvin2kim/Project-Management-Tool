@@ -7,7 +7,6 @@ import Greetings from "../../../components/Greetings";
 import PlaceholderGreetings from "../../../components/PlaceholderGreetings";
 import ProjectComponent from "../../../components/ProjectComponent";
 import TaskCard from "../../../components/TaskCard";
-import NewProject from "../../../components/NewProjectCard";
 import NewProjectCard from "../../../components/NewProjectCard";
 
 async function getProject() {

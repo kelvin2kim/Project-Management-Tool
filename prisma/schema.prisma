@@ -37,7 +37,7 @@ model Project {
   deleted     Boolean   @default(false)
   tasks       Task[]
 
-  @@unique([ownerId, name])
+  @@unique([ownerId, name, deleted])
   @@index([ownerId, id])
 }
 

@@ -29,7 +29,7 @@ function displayDate(date) {
 }
 
 const ProjectComponent: FC<{project: ProjectWithTasks}> = ({ project }) => {
-    const completed = project.tasks.map((a) => a.status === TASK_STATUS.COMPLETED).length;
+    const completed = project.tasks.filter((a) => a.status === TASK_STATUS.COMPLETED).length;
     const allTasks = project.tasks.length;
     const progress = Math.ceil((completed / allTasks) * 100);
 

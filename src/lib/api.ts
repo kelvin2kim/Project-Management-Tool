@@ -68,3 +68,11 @@ export const newTask = async (input) => {
     body: input,
   });
 }
+
+export const deleteTask = async (input) => {
+  return fetcher({
+    url: "/api/deletetask",
+    method: "POST",
+    body: input,
+  });
+}

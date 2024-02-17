@@ -5,6 +5,7 @@ import Button from "./Button";
 import Card from "./Card";
 import { TASK_STATUS } from "@prisma/client";
 import CreateTaskButton from "./CreateTaskButton";
+import DeleteTaskIcon from "./DeleteTaskIcon";
 
 
 const getData = async () => {
@@ -15,7 +16,7 @@ const getData = async () => {
             ownerId: user.id,
             NOT: {
                 status: TASK_STATUS.COMPLETED,
-                deleted: false,
+                deleted: true,
             }
         },
         take: 5,
@@ -55,19 +56,26 @@ export default async function TaskCard({tasks, title, params}) {
         <Card>
             <div className="flex justify-between items-center">
                 <div>
-                <span className="text-3xl text-gray-600">{title}</span>
+                    <span className="text-3xl text-gray-600">{title}</span>
                 </div>
                 <div>
-                <CreateTaskButton projectId={project.id}/>
+                    <CreateTaskButton projectId={project.id}/>
                 </div>
             </div>
             <div>
                 {data && data.length ? (
                 <div>
-                    {data.map((task) => (
+                    {data.map((task) => (task.deleted === false && (
                     <div className="py-2 ">
-                        <div>
-                        <span className="text-gray-800">{task.name}</span>
+                        <div className="flex flex-2 grow items-center flex-wrap mt-3">
+                            <div>
+                                <span className="text-gray-500">
+                                    {task.name}
+                                </span>
+                            </div>
+                            <div>
+                                <DeleteTaskIcon task={task}/>
+                            </div>
                         </div>
                         <div>
                         <span className="text-gray-400 text-sm">
@@ -75,7 +83,7 @@ export default async function TaskCard({tasks, title, params}) {
                         </span>
                         </div>
                     </div>
-                    ))}
+                    )))}
                 </div>
                 ) : (
                     <h4 className="text-xl text-gray-400">

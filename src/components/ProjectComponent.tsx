@@ -29,6 +29,7 @@ function displayDate(date) {
 }
 
 const ProjectComponent: FC<{project: ProjectWithTasks}> = ({ project }) => {
+    //Use filter instead of map if I want to filter function used within the parenthesis as conditional
     const completed = project.tasks.filter((a) => a.status === TASK_STATUS.COMPLETED).length;
     const allTasks = project.tasks.length;
     const progress = Math.ceil((completed / allTasks) * 100);

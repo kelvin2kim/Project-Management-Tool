@@ -13,10 +13,11 @@ export default async function deleter(req, res) {
   
     await db.project.update({
         where: {
-            ownerId_name: {
+            ownerId_name_deleted: {
                 name: req.body,
                 ownerId: user.id,
-            },
+                deleted: false,
+            }
         },
         data: {
             deleted: true,

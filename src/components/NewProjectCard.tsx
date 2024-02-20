@@ -4,6 +4,8 @@ import { useState } from "react";
 import Modal from "react-modal";
 import Button from "./Button";
 import Input from "./Input";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css"
 
 Modal.setAppElement("#modal");
 
@@ -12,10 +14,12 @@ export default function NewProjectCard () {
   const openModal = () => setIsOpen(true);
   const closeModal = () => setIsOpen(false);
   const [name, setName] = useState("");
+  const [due, setDueDate] = useState(new Date());
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    await newProject(name);
+    const dueDate = due.toISOString();
+    await newProject({name, dueDate});
     closeModal();
   };
 
@@ -31,12 +35,18 @@ export default function NewProjectCard () {
       >
         <h1 className="text-3xl mb-6">New Project</h1>
         <form className="flex items-center" onSubmit={handleSubmit}>
-          <Input
-            required
-            placeholder="project name"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-          />
+            <Input
+                required
+                placeholder="project name"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+            />
+            <div className="px-3">
+                <DatePicker
+                        selected={due}
+                        onChange={(date) => setDueDate(date)}
+                />
+            </div>
           <Button type="submit">Create</Button>
         </form>
       </Modal>

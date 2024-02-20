@@ -45,11 +45,11 @@ export const signin = async (user) => {
   });
 };
 
-export const newProject = async (name) => {
+export const newProject = async (input) => {
   return fetcher({
     url: "/api/project",
     method: "POST",
-    body: { name },
+    body: input,
   });
 }
 

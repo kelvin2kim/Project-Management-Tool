@@ -39,8 +39,13 @@ const ProjectComponent: FC<{project: ProjectWithTasks}> = ({ project }) => {
     return (
         <Card className="!px-6 !py-8 hover:scale-105 transition-all ease-in-out duration-200">
           <div>
+            <span className="text-md text-gray-300">
+              {project.due?  displayDate(project.due): "No due date"}
+            </span>
+          </div>
+          <div>
             <span className="text-sm text-gray-300">
-              {displayDate(project.createdAt)}
+              Created: {displayDate(project.createdAt)}
             </span>
           </div>
           <div className="mb-6">

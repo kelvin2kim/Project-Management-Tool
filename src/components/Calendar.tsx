@@ -4,6 +4,9 @@ import Link from 'next/link';
 import { getUserFromCookie } from "../lib/auth";
 import { db } from "../lib/db";
 import Card from "./Card";
+import ModifiedCard from "./ModifiedCard";
+import CalendarCard from "./CalendarCard";
+import DarkModifiedCard from "./DarkModifiedCard";
 
 const daysOfWeek = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
 
@@ -58,43 +61,50 @@ const Calendar = async ({ year, month }) => {
     //console.log(`projects: ${projects}`);
     
     const calendar = generateCalendar(year, month);
+    const date = new Date();
+    const monthName = date.toLocaleString('default', { month: 'long' });
     //console.log(calendar);
     //"h-full w-full overflow-y-auto pr-6 px-3"
     return (
       <div className="h-full w-full overflow-y-auto pr-6 px-3">
-        <Card classname="h-full pr-6 w-full">
-            <div className="flex">
+        <ModifiedCard className="w-full px-3 border border-gray-200">
+            <div className="grid grid-cols-7 text-center">
             {daysOfWeek.map((day) => (
-                <div key={day} style={{ width: '14.28%', textAlign: 'center' }}>{day}</div>
+                <div key={day} className='text-2xl text-gray-700 font-bold text-center'>{day}</div>
                 
             ))}
             </div>
-        </Card>
-        {calendar.map((week) => (
-          <div className="grid grid-cols-7 gap-1">
-            {week.map((day) => (
-              <div className="flex justify-between px-6 mb-3">
-                <Card className='w-full min-h-[105px]'>
-                    {day}
-                {projects.map((project) => {
-                    const date = new Date(project.due);
-                    //console.log(`project due: ${project.due}`)
-                    if (date.getDate() === day) {
-                        return (
-                            <div className="text-xs">
-                                <Link href = {`/project/${project.id}`}>
-                                    {project.name}
-                                </Link>
-                            </div>
-                        );
+        </ModifiedCard>
+        <ModifiedCard className='px-3'>
+            <h1 className="text-2xl text-gray-700 font-bold">{monthName}</h1>
+            {calendar.map((week) => (
+            <div className="grid grid-cols-7">
+                {week.map((day) => (
+                <div className="overflow-hidden min-h-[105px]">
+                    <CalendarCard className='min-h-[105px]'>
+                        {day ? day : ' '}
+                    {projects.map((project) => {
+                        const date = new Date(project.due);
+                        //console.log(`project due: ${project.due}`)
+                        if (date.getDate() === day) {
+                            return (
+                                <div className="text-xs">
+                                    <Link href = {`/project/${project.id}`}>
+                                        <DarkModifiedCard className='text-center hover:scale-105 transition-all ease-in-out duration-200'>
+                                            {project.name}
+                                        </DarkModifiedCard>
+                                    </Link>
+                                </div>
+                            );
+                        }
                     }
-                }
-                )}   
-                </Card>
-              </div>
+                    )}   
+                    </CalendarCard>
+                </div>
+                ))}
+            </div>
             ))}
-          </div>
-        ))}
+        </ModifiedCard>
       </div>
     );
   };

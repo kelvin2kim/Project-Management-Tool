@@ -59,7 +59,7 @@ export default async function TaskCard({tasks, title, params}) {
                     <span className="text-3xl text-gray-600">{title}</span>
                 </div>
                 <div>
-                    <CreateTaskButton projectId={project.id}/>
+                    {project && <CreateTaskButton projectId={project.id}/>}
                 </div>
             </div>
             <div>

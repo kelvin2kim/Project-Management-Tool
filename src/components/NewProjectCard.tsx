@@ -6,10 +6,13 @@ import Button from "./Button";
 import Input from "./Input";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css"
+import { useRouter } from "next/navigation";
+import CalendarCard from "./CalendarCard";
 
 Modal.setAppElement("#modal");
 
 export default function NewProjectCard () {
+  const router = useRouter();
   const [modalIsOpen, setIsOpen] = useState(false);
   const openModal = () => setIsOpen(true);
   const closeModal = () => setIsOpen(false);
@@ -20,6 +23,7 @@ export default function NewProjectCard () {
     e.preventDefault();
     const dueDate = due.toISOString();
     await newProject({name, dueDate});
+    router.refresh();
     closeModal();
   };
 
@@ -42,10 +46,12 @@ export default function NewProjectCard () {
                 onChange={(e) => setName(e.target.value)}
             />
             <div className="px-3">
-                <DatePicker
-                        selected={due}
-                        onChange={(date) => setDueDate(date)}
-                />
+              <CalendarCard className='flex justify-center items-center'>
+                  <DatePicker
+                          selected={due}
+                          onChange={(date) => setDueDate(date)}
+                  />
+                </CalendarCard>
             </div>
           <Button type="submit">Create</Button>
         </form>

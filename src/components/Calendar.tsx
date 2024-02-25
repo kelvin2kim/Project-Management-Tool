@@ -80,8 +80,8 @@ const Calendar = async ({ year, month }) => {
             {calendar.map((week) => (
             <div className="grid grid-cols-7">
                 {week.map((day) => (
-                <div className="overflow-hidden min-h-[105px]">
-                    <CalendarCard className='min-h-[105px]'>
+                <div className="min-h-[105px]">
+                    <CalendarCard className='min-h-[105px] drop-shadow-xl'>
                         {day ? day : ' '}
                     {projects.map((project) => {
                         const date = new Date(project.due);

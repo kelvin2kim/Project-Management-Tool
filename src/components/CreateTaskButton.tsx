@@ -4,6 +4,7 @@ import { newTask } from "../lib/api";
 import Modal from "react-modal";
 import { useState } from "react";
 import Input from "./Input";
+import { useRouter } from "next/navigation";
 
 Modal.setAppElement("#modal2");
 
@@ -12,12 +13,15 @@ export default function CreateTaskButton({projectId}) {
   const openModal = () => setIsOpen(true);
   const closeModal = () => setIsOpen(false);
   const [name, setName] = useState("");
+
+  const router = useRouter();
   
   const handleSubmit = async (e) => {
-        e.preventDefault();
-        await newTask({name, projectId});
-        closeModal();
-      };
+    e.preventDefault();
+    await newTask({name, projectId});
+    router.refresh();
+    closeModal();
+  };
     return(
       <div>
       <Button onClick={() => openModal()}>+ Create New</Button>
